@@ -148,17 +148,23 @@ void message(const uint8_t *payload, size_t size, port_t port)
       Oled.print(payload[i]);
     }
 
+    // If the received message is 0 then turn off the LED
     if(payload[0] == 0){
       digitalWrite(LED,LOW);
     }
 
+    // If the received message is 1 then turn on the LED
     if(payload[0] == 1){
       digitalWrite(LED,HIGH);
     }
 
-    // Buzz the buzzer  
-    tone(BUZZER, 512); // Try changing the tone here (0-1023)
-    delay(500); // Try changing the duration here (in milliseconds)
+    // Play a tune on the buzzer  
+    tone(BUZZER, 500); // Try changing the tone here (0-1023)
+    delay(200); // Try changing the duration here (in milliseconds)
+    tone(BUZZER, 750);
+    delay(200);
+    tone(BUZZER, 1000);
+    delay(200);
     noTone(BUZZER);
           
   }
